@@ -11,19 +11,21 @@
     <h1>{{title}}</h1>
 
     <form ng-submit="addWorkout()">
-      <select name="repeatSelect" id="repeatSelect">
+      <select name="repeatSelect" id="repeatSelect" ng-model="exercise.muscleGroup">
         <option value="">--Choose a muscle group--</option>
         <option ng-repeat="group in exerciseGroups" value={{group}}>{{group}}</option>
       </select>
 
-      <input placeholder="Exercise Name" />
-      <input placeholder="Weight" />
-      <input placeholder="Repos" />
+      <input type="text" ng-model="exercise.name" placeholder="Exercise Name" />
+      <input type="date" ng-model="exercise.date" placeholder="Weight" />
+      <input type="number" ng-model="exercise.weight" placeholder="Weight" />
+      <input type="number" ng-model="exercise.reps" placeholder="Reps" />
 
       <button>Add</button>
     </form>
 
-    <table>
+    <h2 ng-hide="workouts[0]">Add a Workout</h2>
+    <table ng-show="workouts[0]">
       <tr>
         <th>Date</th>
         <th>Muscle Group</th>
@@ -32,9 +34,9 @@
         <th>Reps</th>
       </tr>
       <tr ng-repeat="workout in workouts">
-        <td>{{ workout.date }}</td>
+        <td>{{ workout.date | date }}</td>
         <td>{{ workout.muscleGroup }}</td>
-        <td>{{ workout.exercise }}</td>
+        <td>{{ workout.name }}</td>
         <td>{{ workout.weight }}</td>
         <td>{{ workout.reps }}</td>
       </tr>
