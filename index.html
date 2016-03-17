@@ -1,9 +1,46 @@
 <!DOCTYPE html>
-<html ng-app="swole">
+<html ng-app="swole-app">
 <head>
   <title></title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 
+  <div class="exercise" ng-controller="swoleControl">
+    <h1>{{title}}</h1>
+
+    <form ng-submit="addWorkout()">
+      <select name="repeatSelect" id="repeatSelect">
+        <option value="">--Choose a muscle group--</option>
+        <option ng-repeat="group in exerciseGroups" value={{group}}>{{group}}</option>
+      </select>
+
+      <input placeholder="Exercise Name" />
+      <input placeholder="Weight" />
+      <input placeholder="Repos" />
+
+      <button>Add</button>
+    </form>
+
+    <table>
+      <tr>
+        <th>Date</th>
+        <th>Muscle Group</th>
+        <th>Exercise</th>
+        <th>Weight</th>
+        <th>Reps</th>
+      </tr>
+      <tr ng-repeat="workout in workouts">
+        <td>{{ workout.date }}</td>
+        <td>{{ workout.muscleGroup }}</td>
+        <td>{{ workout.exercise }}</td>
+        <td>{{ workout.weight }}</td>
+        <td>{{ workout.reps }}</td>
+      </tr>
+    </table>
+  </div>
+
+  <script type="text/javascript" src="swole.js"></script>
 </body>
 </html>
